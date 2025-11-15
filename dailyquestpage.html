@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quests - Моя Игра</title>
+    <link rel="stylesheet" href="dailyquestpage.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="quest-background"></div>
+        
+        <div class="profile-panel">
+            <div class="profile-info">
+                <img src="avatar.png" alt="Аватар игрока" class="profile-avatar">
+                <div class="profile-details">
+                    <span class="nickname">Player Nickname</span>
+                    <div class="level-progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <span class="level-text">Next level</span>
+                </div>
+                <div class="trophies-display">
+                    <img src="trophy.png" alt="Кубки">
+                    <span>5000</span>
+                </div>
+            </div>
+            <div class="currency-bar">
+                <div class="currency-item">
+                    <img src="fire.png" alt="Стрик">
+                    <span>17</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="coin.png" alt="Монеты">
+                    <span class="currency-value">1240</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="diamond.png" alt="Алмазы">
+                    <span class="currency-value">75</span> 
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content-area">
+            
+            <div class="section-container section-analysis">
+                <h2 class="section-title">AI ERROR ANALYSIS</h2>
+                <div class="task-long-cube">
+                    <a href="#" class="task-item" data-task-type="Daily Mistakes">
+                        <img src="dailymistakes.png" alt="Daily Mistakes" class="task-icon">
+                    </a>
+                    <a href="#" class="task-item" data-task-type="Battle Mistakes">
+                        <img src="battlemistakes.png" alt="Battle Mistakes" class="task-icon">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="section-container section-tasks">
+                <h2 class="section-title">DAILY TASKS</h2>
+                <div class="task-long-cube">
+                    <a href="#" class="task-item" data-task-type="Vocabulary">
+                        <img src="vocabulary.png" alt="Vocabulary" class="task-icon">
+                    </a>
+                    <a href="#" class="task-item" data-task-type="Grammar">
+                        <img src="grammar.png" alt="Grammar" class="task-icon">
+                    </a>
+                    <a href="#" class="task-item" data-task-type="Quiz">
+                        <img src="quiz.png" alt="Quiz" class="task-icon">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="stats-sidebar">
+                <div class="stats-small-cube streak-box">
+                    <img src="calendar.png" alt="Daily Streak" class="stats-icon">
+                    <span class="stats-text">DAILY STREAK:<br> **7** days</span>
+                </div>
+                
+                <div class="stats-small-cube challenge-box">
+                    <img src="sword.png" alt="Weekly Challenge" class="stats-icon challenge-icon">
+                    <span class="stats-text">WEEKLY CHALLENGE<br>PROGRESS: **326/500**</span>
+                </div>
+            </div>
+
+        </div>
+        <div id="coinAnimation" class="coin-animation hidden">
+            <img src="coin.png" alt="Монета" class="coin-icon">
+            <span>+5</span>
+        </div>
+
+    </div>
+
+    <footer class="navigation-bar">
+        
+        <div class="nav-background"></div>
+        
+        <div class="buttons-container">
+            <div class="nav-button active-quest-button">
+                <img src="dailyquestbutton.png" alt="Ежедневные задания">
+                <span class="nav-button-text">DAILY QUESTS</span>
+            </div>
+            
+            <a href="deckspage.html" class="nav-button">
+                <img src="decksbutton.png" alt="Колоды">
+                <span class="nav-button-text">DECKS</span>
+            </a>
+            
+            <a href="mainpage.html" class="nav-button home-button">
+                <img src="homebutton.png" alt="Главная">
+                <span class="nav-button-text">HOME</span>
+            </a>
+            
+            <a href="communitypage.html" class="nav-button">
+                <img src="communitybutton.png" alt="Сообщество">
+                <span class="nav-button-text">COMMUNITY</span>
+            </a>
+            
+            <a href="leaderboardpage.html" class="nav-button">
+                <img src="leaderboardbutton.png" alt="Таблица лидеров">
+                <span class="nav-button-text">LEADERBOARD</span>
+            </a>
+        </div>
+    </footer>
+    
+    <div id="aiTaskModal" class="modal-overlay">
+        <div class="modal-content-new"> 
+            
+            <div class="ai-task-header">
+                <h2 id="aiTaskModalTitle">🧠 AI Error Analysis</h2>
+                <button class="close-modal-btn" id="closeAiTaskModal">&times;</button>
+            </div>
+            
+            <div class="ai-task-body">
+                <p class="ai-level-info">Текущий уровень: A1</p>
+                <div id="aiTaskLoader" class="loader-spinner">Загрузка заданий от AI...</div>
+
+                <div id="task-box" class="task-box hidden"> 
+                    
+                    <div id="ai-task-question-area" class="ai-task-question-area">
+                        </div>
+                    
+                    <div id="ai-task-options-area" class="ai-task-options-area">
+                        </div>
+                </div>
+            </div>
+            
+            <div class="task-navigation-footer">
+                <button id="skipVocabBtn" class="primary-btn skip-vocab-btn hidden">Знаю это слово →</button> 
+                <button id="prevTaskBtn" class="nav-btn hidden">← Назад</button>
+                <button id="submitAnswerBtn" class="primary-btn hidden">Проверить</button>
+                <button id="nextTaskBtn" class="nav-btn hidden">Далее →</button>
+                
+                <button id="forceEndTestBtn" class="nav-btn finish-btn">Закончить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dailyquestpage.js"></script> 
+</body>
+</html>

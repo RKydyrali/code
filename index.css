@@ -1,0 +1,8 @@
+/* В вашем game_styles.css, в разделе .login-btn */
+.login-btn {
+    /* ... (существующие стили кнопки) ... */
+    
+    display: block;
+    text-align: center; 
+    line-height: 1.2; /* Улучшает вертикальное выравнивание */
+}

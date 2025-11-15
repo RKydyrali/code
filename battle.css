@@ -1,0 +1,859 @@
+/* battle.css */
+
+/* ---------------------------------- */
+/* ОБЩИЕ СТИЛЫ СТРАНИЦЫ И КОНТЕЙНЕРОВ */
+/* ---------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    position: relative; 
+    background-color: #0d121c; 
+    color: #FFF; 
+    font-family: sans-serif;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative; 
+    background-color: transparent; 
+}
+
+/* ---------------------------------- */
+/* ФОН СТРАНИЦЫ */
+/* ---------------------------------- */
+.game-background {
+    position: absolute; 
+    width: 100vw; 
+    height: 100vh; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 4.88vh)); 
+    background: url(mainpagebackground.png); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+    opacity: 0.7;
+    filter: brightness(0.8);
+}
+
+/* ---------------------------------- */
+/* ВЕРХНИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ПРОФИЛЬ И ВАЛЮТА) */
+/* ---------------------------------- */
+
+.profile-panel {
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    z-index: 50;  
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ffcc00; 
+    padding: 15px 20px; 
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 350px; 
+    box-sizing: border-box;
+    pointer-events: auto; 
+}
+
+.profile-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.profile-avatar {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #00ccff; 
+    background: url(avatar.png) center center / cover no-repeat; 
+    flex-shrink: 0; 
+}
+.profile-details { flex-grow: 1; margin-right: 10px;}
+.nickname { 
+    font-weight: bold; 
+    font-size: 1.2em; 
+    color: #fff;
+    white-space: nowrap; 
+}
+.level-text { font-size: 0.8em; color: #aaa; }
+.level-progress-bar { 
+    height: 8px; 
+    background-color: #555; 
+    border-radius: 4px; 
+    margin: 5px 0; 
+    overflow: hidden; 
+}
+.progress-fill { 
+    height: 100%; 
+    background-color: #00ccff; 
+}
+
+.trophies-display { 
+    display: flex; 
+    align-items: center; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    color: #ffcc00; 
+    margin-left: auto; 
+    background-color: #333; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap; 
+}
+.trophies-display img { 
+    width: 25px; 
+    height: 25px; 
+    margin-right: 5px; 
+    flex-shrink: 0;
+}
+
+.health-bar {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+.health-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.health-icon.hidden {
+    transform: scale(0);
+    opacity: 0;
+    width: 0;
+}
+
+
+.currency-bar { 
+    display: flex; 
+    gap: 15px;
+    padding-top: 10px; 
+    font-size: 0.9em; 
+    color: #eee; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: flex-start; 
+}
+.currency-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 3px;
+    white-space: nowrap;
+}
+.currency-item img { 
+    width: 25px; 
+    height: 25px; 
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.currency-item span { 
+    font-weight: bold; 
+    color: #fff; 
+}
+.currency-item:first-child span { color: #ff6600; }
+.currency-item:nth-child(2) span { color: #ffcc00; }
+.currency-item:nth-child(3) span { color: #00ccff; }
+
+
+/* ---------------------------------- */
+/* ЦЕНТРАЛЬНЫЙ КОНТЕНТ (ИГРОВОЕ ПОЛЕ) */
+/* ---------------------------------- */
+
+.game-area-container {
+    position: absolute;
+    top: 18vh; /* Отступ от панели профиля */
+    bottom: 16vh; /* Отступ от навигации */
+    left: 5vw;
+    right: 5vw;
+    z-index: 10;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* ЗОНА ОППОНЕНТА */
+.opponent-area {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Для уведомления */
+}
+.opponent-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+.opponent-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ff6600;
+}
+.opponent-name {
+    font-weight: bold;
+    color: #ff6600;
+}
+.opponent-hand {
+    display: flex;
+    gap: 5px;
+}
+.card-back {
+    width: 60px;
+    height: 80px;
+    background-color: #555;
+    border: 2px solid #888;
+    border-radius: 5px;
+    background-image: url(card_back.png); /* Заглушка для рубашки */
+    background-size: cover;
+}
+
+/* УВЕДОМЛЕНИЕ ОППОНЕНТА */
+.opponent-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 100, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    z-index: 100;
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -100%) scale(1.1); }
+    100% { opacity: 0; transform: translate(-50%, -120%) scale(1.1); }
+}
+
+
+/* ИГРОВОЕ ПОЛЕ */
+.play-field {
+    flex-grow: 1; /* Занимает все свободное место */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px dashed #555;
+    border-radius: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.2s;
+}
+.play-field.drag-over {
+    background-color: rgba(0, 204, 255, 0.2);
+    border-color: #00ccff;
+}
+.play-field-line {
+    width: 100%;
+    height: 2px;
+    background: #00ccff;
+    opacity: 0.3;
+    position: absolute;
+    top: 50%;
+}
+.play-field-text {
+    color: #555;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* ЗОНА ИГРОКА (РУКА + МАНА) */
+.player-area {
+    width: 100%;
+    height: 200px; /* Фиксированная высота для руки и маны */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-hand {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    height: 160px; /* Высота карт */
+    width: 100%;
+}
+
+.card-container {
+    position: relative;
+}
+
+.card-in-hand {
+    width: 120px;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.card-in-hand:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+.card-in-hand.dragging {
+    opacity: 0.4;
+    transform: rotate(5deg);
+}
+
+/* МАНА-БАР */
+.mana-bar-container {
+    width: 50%;
+    max-width: 400px;
+    height: 30px;
+    background-color: #222;
+    border: 2px solid #00ccff;
+    border-radius: 15px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.mana-bar-fill {
+    width: 50%; /* JS будет управлять этим (5/10) */
+    height: 100%;
+    background: linear-gradient(90deg, #8A2BE2, #DA70D6); /* Фиолетовый градиент */
+    transition: width 0.5s ease-out;
+}
+.mana-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* ---------------------------------- */
+/* ВСПЛЫВАЮЩАЯ ПОДСКАЗКА (TOOLTIP) */
+/* ---------------------------------- */
+.card-tooltip {
+    position: absolute;
+    bottom: 100%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px); 
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00ccff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px; 
+    text-align: left;
+    font-size: 0.9em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 101; 
+    white-space: normal; 
+}
+.card-tooltip p { margin: 5px 0 0 0; }
+.card-container:hover .card-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+.tooltip-mana { font-weight: bold; color: #ffcc00; }
+
+
+/* ---------------------------------- */
+/* НИЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ (МАЛЕНЬКАЯ, 2x ИКОНКИ) */
+/* ---------------------------------- */
+
+.navigation-bar { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 15.7vh; /* Стандартная высота */
+    min-height: 90px;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    z-index: 1000; 
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); 
+}
+
+.nav-background { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    bottom: 0; 
+    background: linear-gradient(to top, #01587F 75%, #017FB7 100%);
+}
+
+.buttons-container { 
+    position: absolute; 
+    bottom: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start; 
+    padding-top: 1vh;
+}
+
+.nav-button { 
+    width: 14vw; 
+    max-width: 120px;
+    height: 10vh; 
+    max-height: 100px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    text-decoration: none; 
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: 600;
+    z-index: 2; 
+    opacity: 0.6; 
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap; 
+}
+
+.nav-button:hover {
+    opacity: 1;
+    transform: translateY(-5px); 
+}
+
+.nav-button img { 
+    width: 160%; 
+    height: 160%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+.nav-button-text {
+    margin-top: 5px; 
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+
+.home-button { 
+    width: 16vw; 
+    max-width: 140px;
+    height: 12vh;
+    max-height: 120px;
+    transform: translateY(-1.5vh); 
+    opacity: 1; /* Активна */
+}
+.home-button:hover {
+    opacity: 1;
+    transform: translateY(-2vh); 
+}
+.home-button img {
+    width: 180%;
+    height: 180%;
+}
+
+/* Кнопка HOME - Активная */
+.active-home-button {
+    opacity: 1; 
+    transform: translateY(-1.5vh); 
+    transition: none; 
+    color: #ffcc00; 
+}
+.active-home-button:hover {
+    opacity: 1; 
+    transform: translateY(-2vh); 
+}
+
+/* ================================================= */
+/* СТИЛИ МОДАЛЬНОГО ОКНА (НОВЫЙ ДИЗАЙН "КОРОБКА") */
+/* ================================================= */
+/* (Скопировано из deckspage.css) */
+
+.modal-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.85);
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2000; 
+}
+
+/* НОВЫЙ ДИЗАЙН КОНТЕЙНЕРА */
+.modal-content-new { 
+    background-color: #222; 
+    border: 3px solid #00ccff; 
+    border-radius: 15px; 
+    padding: 20px; 
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5); 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+    width: 70vw; 
+    max-width: 850px; 
+    height: 80vh; 
+    max-height: 650px; 
+    box-sizing: border-box;
+}
+
+.ai-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00ccff;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.ai-task-header h2 {
+    font-size: 2.2em; 
+    margin: 0;
+    color: #00ccff;
+    text-shadow: 1px 1px 3px rgba(0,204,255,0.4);
+}
+.close-modal-btn { 
+    position: static; 
+    font-size: 40px; 
+    color: #fff; 
+    cursor: pointer; 
+    background: none; 
+    border: none; 
+    line-height: 1;
+}
+
+.ai-task-body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    overflow-y: auto; 
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+.ai-task-body::-webkit-scrollbar { 
+    display: none;
+}
+
+.ai-level-info {
+    font-size: 1.1em;
+    color: #999;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* СТАТИЧНАЯ "КОРОБКА" ДЛЯ ЗАДАНИЯ */
+.task-box {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    padding: 25px; 
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.loader-spinner {
+    text-align: center;
+    padding: 50px;
+    color: #ffcc00;
+    font-size: 1.3em;
+}
+
+/* ОБЛАСТЬ ВОПРОСА */
+.ai-task-question-area {
+    min-height: 120px; 
+    text-align: center;
+    font-size: 1.4em; 
+    font-weight: 500;
+    line-height: 1.5;
+    color: #fff;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #333;
+    border-radius: 8px;
+    word-wrap: break-word; 
+    word-break: break-word; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.ai-task-question-area h4 {
+    font-size: 1.1em;
+    color: #00ccff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.ai-task-question-area .instruction-label {
+    font-weight: bold;
+    color: #ffcc00;
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* ОБЛАСТЬ ОТВЕТОВ */
+.ai-task-options-area {
+    margin-top: auto; 
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; 
+    margin-top: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.option-btn {
+    background-color: #555;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 12px 25px; 
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    font-size: 1.1em; 
+    flex-grow: 1;
+    flex-basis: 48%; 
+    max-width: calc(50% - 6px); 
+    box-sizing: border-box;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #666;
+    border-color: #00ccff;
+}
+
+.option-btn.selected {
+    background-color: #00ccff;
+    border-color: #00ccff;
+    color: #000;
+}
+
+.option-btn.correct {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: #fff;
+}
+
+.option-btn.incorrect {
+    background-color: #F44336;
+    border-color: #F44336;
+    color: #fff;
+}
+
+/* ПОЛЕ ВВОДА */
+.answer-input {
+    padding: 15px; 
+    margin-top: 20px;
+    border: 2px solid #555;
+    border-radius: 10px;
+    background-color: #444;
+    color: #fff;
+    font-size: 1.1em;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 80px; 
+    resize: vertical; 
+}
+
+/* ---------------------------------- */
+/* Футер модального окна (КНОПКИ НАВИГАЦИИ ЗАДАНИЙ) */
+/* ---------------------------------- */
+.task-navigation-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    padding-top: 20px;
+    border-top: 2px solid #00ccff;
+    margin-top: 20px;
+}
+
+.nav-btn, .primary-btn, .skip-vocab-btn, .finish-btn {
+    padding: 12px 25px; 
+    border-radius: 8px; 
+    font-size: 1.1em; 
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-btn { 
+    background-color: #444;
+    color: #fff;
+    border: 2px solid #666;
+}
+.nav-btn:hover:not(:disabled) {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.primary-btn { 
+    background-color: #00ccff;
+    color: #000;
+    border: 2px solid #00ccff;
+}
+.primary-btn:hover:not(:disabled) {
+    background-color: #33e0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,204,255,0.4);
+}
+
+.skip-vocab-btn { 
+    background-color: #ffcc00;
+    color: #000;
+    border: 2px solid #ffcc00;
+}
+.skip-vocab-btn:hover:not(:disabled) {
+    background-color: #ffd633;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255,204,0,0.4);
+}
+
+.finish-btn { 
+    background-color: #F44336;
+    color: #fff;
+    border: 2px solid #F44336;
+}
+.finish-btn:hover:not(:disabled) {
+    background-color: #e53935;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(244,67,54,0.4);
+}
+
+.nav-btn:disabled, .primary-btn:disabled, .skip-vocab-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.hidden { display: none; }
+
+/* ---------------------------------- */
+/* АНИМАЦИЯ МОНЕТ */
+/* ---------------------------------- */
+.coin-animation {
+    position: absolute;
+    top: 10vh; 
+    left: 20vw;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #ffcc00;
+    font-size: 1.5em;
+    opacity: 0; 
+    transform: translateY(20px) scale(0.5); 
+    pointer-events: none; 
+}
+
+.coin-animation .coin-icon {
+    width: 40px; 
+    height: 40px;
+    margin-right: 5px;
+}
+
+@keyframes coinFly {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.1);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1.0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.8);
+    }
+}
+
+/* ================================================= */
+/* (НОВОЕ) СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА ОКОНЧАНИЯ ИГРЫ */
+/* ================================================= */
+
+.game-over-modal {
+    height: auto; /* Авто-высота по контенту */
+    max-height: 400px;
+    width: 500px; /* Фиксированная ширина */
+    max-width: 90vw;
+    text-align: center;
+}
+/* Стилизация заголовка Game Over */
+.game-over-modal h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Цвет по умолчанию (для Победы) */
+}
+.game-over-modal.loss h2 {
+    color: #F44336; /* Красный для Поражения */
+}
+
+
+.game-over-stats {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+.game-over-stats p {
+    margin: 5px 0;
+}
+.stat-loss {
+    color: #F44336; /* Красный */
+    font-weight: bold;
+}
+.stat-gain {
+    color: #4CAF50; /* Зеленый */
+    font-weight: bold;
+}
+
+.game-over-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+/* Используем .nav-btn из .task-navigation-footer, но переопределяем ширину */
+.game-over-buttons .nav-btn {
+    width: 45%;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+/* Переопределяем цвет кнопки "Выход" */
+.game-over-buttons .finish-btn {
+     background-color: #F44336;
+     border-color: #F44336;
+     color: #fff;
+}
+.game-over-buttons .finish-btn:hover:not(:disabled) {
+    background-color: #e53935;
+}

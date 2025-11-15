@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decks - Моя Игра</title>
+    <link rel="stylesheet" href="deckspage.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="deck-background"></div>
+        
+        <div class="profile-panel">
+            <div class="profile-info">
+                <img src="avatar.png" alt="Аватар игрока" class="profile-avatar">
+                <div class="profile-details">
+                    <span class="nickname">Player Nickname</span>
+                    <div class="level-progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <span class="level-text">Next level</span>
+                </div>
+                <div class="trophies-display">
+                    <img src="trophy.png" alt="Кубки">
+                    <span>5000</span>
+                </div>
+            </div>
+            <div class="currency-bar">
+                <div class="currency-item">
+                    <img src="fire.png" alt="Стрик">
+                    <span class="currency-value">17</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="coin.png" alt="Монеты">
+                    <span class="currency-value">1240</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="diamond.png" alt="Алмазы">
+                    <span class="currency-value">75</span> 
+                </div>
+            </div>
+        </div>
+
+        <div class="deck-builder-container">
+            
+            <div class="deck-area" id="deck-area">
+                <h2 class="area-title">Активная Колода (4 карты)</h2>
+                <div class="deck-grid">
+                    <div class="deck-slot" id="slot-1">
+                        <div class="card-container">
+                            <img src="placeholder.png" alt="Empty Slot" class="deck-card" draggable="true" id="deck-card-1">
+                            <div class="card-tooltip"></div>
+                        </div>
+                    </div>
+                    <div class="deck-slot" id="slot-2">
+                        <div class="card-container">
+                            <img src="placeholder.png" alt="Empty Slot" class="deck-card" draggable="true" id="deck-card-2">
+                            <div class="card-tooltip"></div>
+                        </div>
+                    </div>
+                    <div class="deck-slot" id="slot-3">
+                        <div class="card-container">
+                            <img src="placeholder.png" alt="Empty Slot" class="deck-card" draggable="true" id="deck-card-3">
+                            <div class="card-tooltip"></div>
+                        </div>
+                    </div>
+                    <div class="deck-slot" id="slot-4">
+                        <div class="card-container">
+                            <img src="placeholder.png" alt="Empty Slot" class="deck-card" draggable="true" id="deck-card-4">
+                            <div class="card-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-area" id="collection-area">
+                <h2 class="area-title">Твоя Коллекция</h2>
+                
+                <div class="card-scroller">
+                    
+                    <div class="card-container">
+                        <img src="A1adjectives1.png" alt="Card" class="card" draggable="true" id="card-1">
+                        <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 3 Маны</span>
+                            <p>Задание на прилагательные (A1). Соперник должен сопоставить слова.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1adjectives2.png" alt="Card" class="card" draggable="true" id="card-2">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 2 Маны</span>
+                            <p>Задание на прилагательные (A1). Найти ошибку.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1grammar1.png" alt="Card" class="card" draggable="true" id="card-3">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 4 Маны</span>
+                            <p>Задание на грамматику (A1). Present Simple.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1nouns1.png" alt="Card" class="card" draggable="true" id="card-4">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 1 Мана</span>
+                            <p>Задание на существительные (A1). Единственное/Множественное число.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1nouns2.png" alt="Card" class="card" draggable="true" id="card-5">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 2 Маны</span>
+                            <p>Задание на существительные (A1). Исчисляемые/Неисчисляемые.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1verbs1.png" alt="Card" class="card" draggable="true" id="card-6">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 3 Маны</span>
+                            <p>Задание на глаголы (A1). Action Verbs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A1verbs2.png" alt="Card" class="card" draggable="true" id="card-7">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 2 Маны</span>
+                            <p>Задание на глаголы (A1). State Verbs (to be, have).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-container">
+                        <img src="A2nouns.png" alt="Card" class="card" draggable="true" id="card-8">
+                         <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 5 Ман</span>
+                            <p>Сложное задание (A2). Существительные (Нью-Йорк).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    <footer class="navigation-bar">
+        
+        <div class="nav-background"></div>
+        
+        <div class="buttons-container">
+            <a href="dailyquestpage.html" class="nav-button">
+                <img src="dailyquestbutton.png" alt="Ежедневные задания">
+                <span class="nav-button-text">DAILY QUESTS</span>
+            </a>
+            
+            <div class="nav-button home-button active-deck-button">
+                <img src="decksbutton.png" alt="Колоды">
+                <span class="nav-button-text">DECKS</span>
+            </div>
+            
+            <a href="mainpage.html" class="nav-button home-button">
+                <img src="homebutton.png" alt="Главная">
+                <span class="nav-button-text">HOME</span>
+            </a>
+            
+            <a href="communitypage.html" class="nav-button">
+                <img src="communitybutton.png" alt="Сообщество">
+                <span class="nav-button-text">COMMUNITY</span>
+            </a>
+            
+            <a href="leaderboardpage.html" class="nav-button">
+                <img src="leaderboardbutton.png" alt="Таблица лидеров">
+                <span class="nav-button-text">LEADERBOARD</span>
+            </a>
+        </div>
+    </footer>
+
+    <script src="deckspage.js"></script>
+</body>
+</html>

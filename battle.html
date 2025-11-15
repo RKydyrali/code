@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Arena - Моя Игра</title>
+    <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="game-background"></div>
+        
+        <div class="profile-panel">
+            <div class="profile-info">
+                <img src="avatar.png" alt="Аватар игрока" class="profile-avatar">
+                <div class="profile-details">
+                    <span class="nickname">Player Nickname</span>
+                    <div class="level-progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <span class="level-text">Next level</span>
+                </div>
+                <div class="health-bar">
+                    <img src="heart.png" alt="Health" class="health-icon">
+                    <img src="heart.png" alt="Health" class="health-icon">
+                    <img src="heart.png" alt="Health" class="health-icon">
+                </div>
+            </div>
+            <div class="currency-bar">
+                <div class="currency-item">
+                    <img src="fire.png" alt="Стрик">
+                    <span class="currency-value">17</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="coin.png" alt="Монеты">
+                    <span class="currency-value">1240</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="diamond.png" alt="Алмазы">
+                    <span class="currency-value">75</span> 
+                </div>
+            </div>
+        </div>
+
+        <div class="game-area-container">
+            
+            <div class="opponent-area">
+                <div class="opponent-info">
+                    <img src="avatar_opponent.png" alt="Opponent Avatar" class="opponent-avatar">
+                    <span class="opponent-name">Opponent_Nickname</span>
+                    <div class="health-bar opponent-health">
+                        <img src="heart.png" alt="Health" class="health-icon">
+                        <img src="heart.png" alt="Health" class="health-icon">
+                        <img src="heart.png" alt="Health" class="health-icon">
+                    </div>
+                </div>
+                <div class="opponent-hand">
+                    <div class="card-back"></div>
+                    <div class="card-back"></div>
+                    <div class="card-back"></div>
+                    <div class="card-back"></div>
+                </div>
+                <div id="opponent-notification" class="opponent-notification hidden">
+                    Вопрос отправлен!
+                </div>
+            </div>
+            
+            <div class="play-field" id="play-field">
+                <div class="play-field-line"></div>
+                <span class="play-field-text">Перетащи карту сюда, чтобы сыграть</span>
+            </div>
+            
+            <div class="player-area">
+                <div class="player-hand" id="player-hand">
+                    <div class="card-container">
+                        <img src="A1grammar.png" alt="Card" class="card-in-hand" draggable="true" data-mana="4" data-card-type="Grammar">
+                        <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 4 Маны</span>
+                            <p>Задание на грамматику (A1). Present Simple.</p>
+                        </div>
+                    </div>
+                    <div class="card-container">
+                        <img src="A1verbs1.png" alt="Card" class="card-in-hand" draggable="true" data-mana="3" data-card-type="Vocabulary">
+                        <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 3 Маны</span>
+                            <p>Задание на глаголы (A1). Action Verbs.</p>
+                        </div>
+                    </div>
+                    <div class="card-container">
+                        <img src="A1adjectives.png" alt="Card" class="card-in-hand" draggable="true" data-mana="2" data-card-type="Vocabulary">
+                        <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 2 Маны</span>
+                            <p>Задание на прилагательные (A1).</p>
+                        </div>
+                    </div>
+                    <div class="card-container">
+                        <img src="A1nouns.png" alt="Card" class="card-in-hand" draggable="true" data-mana="1" data-card-type="Vocabulary">
+                        <div class="card-tooltip">
+                            <span class="tooltip-mana">💧 1 Мана</span>
+                            <p>Задание на существительные (A1).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mana-bar-container">
+                    <div class="mana-bar-fill" id="mana-bar-fill"></div>
+                    <span class="mana-text" id="mana-text">5 / 10</span>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    <footer class="navigation-bar">
+        
+        <div class="nav-background"></div>
+        
+        <div class="buttons-container">
+            <a href="dailyquestpage.html" class="nav-button">
+                <img src="dailyquestbutton.png" alt="Ежедневные задания">
+                <span class="nav-button-text">DAILY QUESTS</span>
+            </a>
+            
+            <a href="deckspage.html" class="nav-button">
+                <img src="decksbutton.png" alt="Колоды">
+                <span class="nav-button-text">DECKS</span>
+            </a>
+            
+            <a href="mainpage.html" class="nav-button home-button active-home-button">
+                <img src="homebutton.png" alt="Главная">
+                <span class="nav-button-text">HOME</span>
+            </a>
+            
+            <a href="communitypage.html" class="nav-button">
+                <img src="communitybutton.png" alt="Сообщество">
+                <span class="nav-button-text">COMMUNITY</span>
+            </a>
+            
+            <a href="leaderboardpage.html" class="nav-button">
+                <img src="leaderboardbutton.png" alt="Таблица лидеров">
+                <span class="nav-button-text">LEADERBOARD</span>
+            </a>
+        </div>
+    </footer>
+
+    <div id="playerQuestionModal" class="modal-overlay">
+        <div class="modal-content-new"> 
+            
+            <div class="ai-task-header">
+                <h2 id="playerQuestionTitle">🧠 AI Задание</h2>
+            </div>
+            
+            <div class="ai-task-body">
+                <div id="playerTaskLoader" class="loader-spinner">Генерация вопроса...</div>
+
+                <div id="player-task-box" class="task-box hidden"> 
+                    <div id="player-task-question-area" class="ai-task-question-area">
+                        </div>
+                    <div id="player-task-options-area" class="ai-task-options-area">
+                        </div>
+                </div>
+            </div>
+            
+            <div class="task-navigation-footer">
+                 <button id="playerSubmitAnswerBtn" class="primary-btn">Ответить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal-overlay">
+        <div class="modal-content-new game-over-modal"> 
+            
+            <h2 id="gameOverTitle">Поражение!</h2>
+            
+            <div class="game-over-stats">
+                <p>Кубки: <span id="trophyChange" class="stat-loss">-25</span></p>
+                <p>Монеты: <span id="coinChange" class="stat-gain">+50</span></p>
+            </div>
+            
+            <div class="game-over-buttons">
+                <a href="dailyquestpage.html" class="nav-btn">Работа над ошибками</a>
+                <a href="mainpage.html" class="nav-btn finish-btn">Выход</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notificationModal" class="modal-overlay">
+        <div class="modal-content-new notification-modal"> 
+            <h2 id="notificationTitle"></h2>
+            <p id="notificationMessage"></p>
+            <button id="notificationCloseBtn" class="primary-btn">OK</button>
+        </div>
+    </div>
+
+
+    <script src="battle.js"></script>
+</body>
+</html>

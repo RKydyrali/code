@@ -1,0 +1,308 @@
+/* dailyquestpage.css - ФИНАЛЬНАЯ ВЕРСИЯ */
+
+/* ---------------------------------- */
+/* 0. ОБЩИЕ СТИЛЫ СТРАНИЦЫ И КОНТЕЙНЕРОВ */
+/* ---------------------------------- */
+:root {
+    --gold-color: #ffcc00;
+    --active-neon: #00ccff; /* Используем голубой неон */
+}
+
+body {
+    margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; 
+    position: relative; background-color: #0d121c; 
+    color: #FFF; font-family: 'Arial', sans-serif; font-size: 16px;
+}
+
+.main-container {
+    width: 100vw; height: 100vh; margin: 0 auto; box-sizing: border-box; 
+    position: relative; background-color: transparent; 
+}
+
+.quest-background {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    background: url(mainpagebackground.png) center center / cover no-repeat; 
+    z-index: 1; opacity: 0.5; filter: brightness(0.8);
+}
+
+
+/* ---------------------------------- */
+/* 1. ВЕРХНИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ПРОФИЛЬ И ВАЛЮТА) */
+/* ---------------------------------- */
+
+.profile-panel {
+    position: absolute; top: 2vh; left: 2vw; z-index: 50; 
+    background-color: rgba(0, 0, 0, 0.6); border: 2px solid #ffcc00; 
+    padding: 1.5vh 1.5vw; border-radius: 12px; display: flex; flex-direction: column; 
+    gap: 1.5vh; width: 28vw; max-width: 450px; box-sizing: border-box;
+}
+
+.profile-info { display: flex; align-items: center; gap: 1vw; }
+.profile-avatar {
+    width: 120px; height: 120px; border-radius: 50%; border: 2px solid #00ccff; 
+    background: url(avatar.png) center center / cover no-repeat;
+}
+.profile-details { flex-grow: 1; }
+.nickname { font-weight: bold; font-size: 1.2em; color: #fff; }
+.level-text { font-size: 0.8em; color: #aaa; }
+.level-progress-bar { height: 8px; background-color: #555; border-radius: 4px; margin: 5px 0; overflow: hidden; }
+.progress-fill { height: 100%; background-color: #00ccff; }
+.trophies-display { 
+    display: flex; align-items: center; font-size: 1.1em; font-weight: bold; color: #ffcc00; 
+    margin-left: auto; background-color: #333; padding: 5px 10px; border-radius: 5px;
+}
+.trophies-display img { width: 50px; height: 50px; margin-right: 5px; }
+.currency-bar { 
+    display: flex; gap: 1.5vw; padding-top: 1vh; font-size: 0.9em; color: #eee; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2); justify-content: flex-start; 
+}
+.currency-item { display: flex; align-items: center; gap: 3px; }
+.currency-item img { width: 50px; height: 50px; object-fit: contain; }
+.currency-item span { font-weight: bold; color: #fff; }
+.currency-item:first-child span { color: #ff6600; } 
+.currency-item:nth-child(2) span { color: #ffcc00; } 
+.currency-item:nth-child(3) span { color: #00ccff; } 
+
+
+/* ---------------------------------- */
+/* 2. ЦЕНТРАЛЬНЫЙ КОНТЕНТ (БЛОКИ ЗАДАНИЙ) */
+/* ---------------------------------- */
+
+.main-content-area {
+    position: absolute; top: 50%; left: 50%; z-index: 20; 
+    width: 80vw; height: 65vh; max-width: 1200px;
+    display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; 
+    gap: 2.5vh 3vw; transform: translate(-50%, -55%); padding-top: 2vh;
+}
+
+.section-container { grid-column: 1 / 2; display: flex; flex-direction: column; align-items: flex-start; }
+
+.section-title {
+    font-size: 1.8em; color: #fff; font-weight: bold; margin-bottom: 1.5vh;
+    padding-left: 2vw; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* БОЛЬШОЙ КУБ (longcube.png) */
+.task-long-cube {
+    width: 100%; height: 18vh; min-height: 130px; max-height: 180px;
+    background: url(longcube.png) center center / 100% 100% no-repeat;
+    display: flex; align-items: center; justify-content: space-evenly; 
+    padding: 0 3vw; box-sizing: border-box; position: relative; 
+}
+
+.task-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; text-decoration: none; color: #fff; 
+    height: 80%; transition: transform 0.2s;
+}
+.section-analysis .task-item { width: 40%; } 
+.section-tasks .task-item { width: 28%; } 
+
+.task-item:hover { transform: scale(1.05); }
+
+.task-icon {
+    width: 140%; height: 140%; max-width: 180px; max-height: 180px; 
+    object-fit: contain; margin-bottom: 0; filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+.task-name {
+    font-size: 0.9em; font-weight: 600; color: #fff; text-align: center; 
+    margin-top: 5px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+
+/* СТАТИСТИКА СПРАВА (smallcube.png) */
+.stats-sidebar {
+    grid-column: 2 / 3; grid-row: 1 / 3; display: flex; flex-direction: column; 
+    justify-content: space-evenly; gap: 2.5vh; padding-top: 1vh; 
+}
+
+.stats-small-cube {
+    width: 100%; height: 25vh; min-height: 150px; max-height: 250px;
+    background: url(smallcube.png) center center / 100% 100% no-repeat;
+    display: flex; flex-direction: column; justify-content: center; 
+    align-items: center; text-align: center; padding: 2vh 1.5vw; 
+    box-sizing: border-box; border-radius: 15px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.stats-icon {
+    width: 120px; height: 120px; object-fit: contain; margin-bottom: 1.5vh;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+.challenge-icon { width: 140px; height: 140px; margin-top: -1vh; margin-bottom: 1vh; }
+
+.stats-text {
+    font-size: 1.2em; color: #fff; line-height: 1.4; font-weight: 500; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ---------------------------------- */
+/* 3. НИЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ */
+/* ---------------------------------- */
+
+.navigation-bar { 
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 13vh; 
+    display: flex; justify-content: center; align-items: flex-end; z-index: 1000; 
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); 
+}
+
+.nav-background { 
+    position: absolute; width: 100%; height: 100%; bottom: 0; 
+    background: linear-gradient(to top, #01587F 75%, #017FB7 100%); 
+}
+
+.buttons-container { 
+    position: absolute; bottom: 0; width: 100%; height: 100%; display: flex; 
+    justify-content: space-around; align-items: flex-start; padding-top: 1vh; 
+}
+
+.nav-button { 
+    width: 14vw; max-width: 120px; height: 10vh; max-height: 100px; display: flex; 
+    flex-direction: column; align-items: center; justify-content: flex-start; 
+    text-decoration: none; color: #fff; font-size: 0.7em; font-weight: 600; 
+    z-index: 2; opacity: 0.6; transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-button:hover { opacity: 1; transform: translateY(-5px); }
+.nav-button img { 
+    width: 160%; height: 160%; max-width: 160px; max-height: 160px; 
+    display: block; object-fit: contain; transform: translateY(-20%);
+}
+
+.nav-button-text {
+    margin-top: 5px; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+
+.home-button { 
+    width: 16vw; max-width: 140px; height: 12vh; max-height: 120px; 
+    transform: translateY(-1.5vh); opacity: 0.8;
+}
+.home-button:hover { opacity: 1; transform: translateY(-2vh); }
+.home-button img { 
+    width: 180%; height: 180%; max-width: 200px; max-height: 200px; 
+    transform: translateY(-20%);
+}
+
+.active-quest-button {
+    opacity: 1; transform: translateY(-1vh); transition: none; color: #ffcc00; 
+}
+.active-quest-button:hover { opacity: 1; transform: translateY(-1vh); }
+
+/* ---------------------------------- */
+/* 4. СТИЛИ МОДАЛЬНОГО ОКНА ЗАДАНИЙ (AI TASK MODAL) */
+/* ---------------------------------- */
+
+.modal-overlay { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background-color: rgba(0, 0, 0, 0.85); display: none; justify-content: center; 
+    align-items: center; z-index: 2000; 
+}
+
+.modal-content-new { 
+    background-color: #222; border: 3px solid #00ccff; border-radius: 15px; 
+    padding: 20px; box-shadow: 0 0 30px rgba(0, 204, 255, 0.5); 
+    display: flex; flex-direction: column; position: relative; 
+    width: 70vw; max-width: 850px; height: 80vh; max-height: 650px; box-sizing: border-box;
+}
+
+.ai-task-header {
+    display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 2px solid #00ccff; padding-bottom: 15px; margin-bottom: 15px;
+}
+.ai-task-header h2 { font-size: 2.2em; margin: 0; color: #00ccff; text-shadow: 1px 1px 3px rgba(0,204,255,0.4); }
+.close-modal-btn { position: static; font-size: 40px; color: #fff; cursor: pointer; background: none; border: none; line-height: 1; }
+
+.ai-task-body { flex-grow: 1; display: flex; flex-direction: column; padding: 10px 0; overflow-y: auto; scrollbar-width: none; }
+.ai-task-body::-webkit-scrollbar { display: none; }
+
+.ai-level-info { font-size: 1.1em; color: #999; margin-bottom: 15px; font-weight: 500; text-align: center; }
+
+/* СТАТИЧНАЯ "КОРОБКА" ДЛЯ ЗАДАНИЯ */
+.task-box {
+    width: 100%; margin: 0 auto; background-color: #2a2a2a; border-radius: 10px; 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); padding: 25px; box-sizing: border-box; 
+    flex-grow: 1; display: flex; flex-direction: column;
+}
+
+/* Индикатор загрузки */
+.loader-spinner {
+    text-align: center; padding: 50px; color: #ffcc00; font-size: 1.3em;
+    animation: pulse 1.5s infinite alternate; font-weight: bold; /* Added bold */
+}
+@keyframes pulse { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+
+/* ОБЛАСТЬ ВОПРОСА */
+.ai-task-question-area {
+    min-height: 120px; text-align: center; font-size: 1.4em; font-weight: 500; line-height: 1.5; 
+    color: #fff; margin-bottom: 25px; padding: 15px; background: #333; border-radius: 8px; 
+    word-wrap: break-word; word-break: break-word; box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.ai-task-question-area h4 { font-size: 1.1em; color: #00ccff; margin-top: 0; margin-bottom: 10px; }
+.ai-task-question-area .instruction-label { font-weight: bold; color: #ffcc00; font-size: 0.9em; display: block; margin-bottom: 8px; text-align: left; }
+
+/* ОБЛАСТЬ ОТВЕТОВ */
+.ai-task-options-area { margin-top: auto; }
+
+.options-container { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; justify-content: center; width: 100%; }
+
+.option-btn {
+    background-color: #555; color: #fff; border: 2px solid #555; padding: 12px 25px; 
+    border-radius: 10px; cursor: pointer; transition: all 0.2s; font-weight: bold; 
+    font-size: 1.1em; flex-grow: 1; flex-basis: 48%; max-width: calc(50% - 6px); box-sizing: border-box;
+}
+
+.option-btn:hover:not(:disabled) { background-color: #666; border-color: var(--active-neon); }
+.option-btn.selected { background-color: var(--active-neon); border-color: var(--active-neon); color: #000; }
+.option-btn.correct { background-color: #4CAF50; border-color: #4CAF50; color: #fff; }
+.option-btn.incorrect { background-color: #F44336; border-color: #F44336; color: #fff; }
+
+/* ПОЛЕ ВВОДА */
+.answer-input {
+    padding: 15px; margin-top: 20px; border: 2px solid #555; border-radius: 10px; 
+    background-color: #444; color: #fff; font-size: 1.1em; width: 100%; 
+    box-sizing: border-box; text-align: center; min-height: 80px; resize: vertical;
+}
+
+/* ---------------------------------- */
+/* Футер модального окна (КНОПКИ НАВИГАЦИИ ЗАДАНИЙ) */
+/* ---------------------------------- */
+.task-navigation-footer {
+    display: flex; justify-content: center; align-items: center; gap: 15px; 
+    padding-top: 20px; border-top: 2px solid var(--active-neon); margin-top: 20px;
+}
+
+.nav-btn, .primary-btn, .skip-vocab-btn, .finish-btn {
+    padding: 12px 25px; border-radius: 8px; font-size: 1.1em; cursor: pointer; 
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; 
+    font-weight: bold; text-transform: uppercase;
+}
+
+.nav-btn { background-color: #444; color: #fff; border: 2px solid #666; }
+.nav-btn:hover:not(:disabled) { background-color: #555; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+
+.primary-btn { background-color: var(--active-neon); color: #000; border: 2px solid var(--active-neon); }
+.primary-btn:hover:not(:disabled) { background-color: #33e0ff; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,204,255,0.4); }
+
+.skip-vocab-btn { background-color: #ffcc00; color: #000; border: 2px solid #ffcc00; }
+.skip-vocab-btn:hover:not(:disabled) { background-color: #ffd633; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255,204,0,0.4); }
+
+.finish-btn { background-color: #F44336; color: #fff; border: 2px solid #F44336; }
+.finish-btn:hover:not(:disabled) { background-color: #e53935; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(244,67,54,0.4); }
+
+.nav-btn:disabled, .primary-btn:disabled, .skip-vocab-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.hidden { display: none; }
+
+/* ---------------------------------- */
+/* СТИЛИ ДЛЯ МОДАЛА РЕЗУЛЬТАТОВ */
+/* ---------------------------------- */
+.modal-results { width: 500px; max-height: 500px; }
+.results-body { padding: 20px 0; text-align: center; }
+.final-score { font-size: 1.8em; color: var(--active-neon); font-weight: bold; }
+.coins-earned { font-size: 1.4em; color: var(--gold-color); }
+.results-summary { max-height: 200px; overflow-y: auto; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px; text-align: left; }
+.result-item { font-size: 1em; padding: 5px 0; border-bottom: 1px dotted #333; }
+.result-item.correct { color: #4CAF50; }
+.result-item.incorrect { color: #F44336; }

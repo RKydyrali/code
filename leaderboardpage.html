@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard Page</title>
+    <link rel="stylesheet" href="leaderboardpage.css">
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="main-container">
+            
+            <header class="top-header">
+                <div class="profile-panel">
+                    <div class="profile-info">
+                        <img src="avatar.png" alt="Аватар" class="profile-avatar">
+                        <div class="profile-details">
+                            <span class="nickname">Player Nickname</span>
+                            <div class="level-progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+                            <span class="level-text">Next level</span>
+                        </div>
+                        <div class="trophies-display">
+                            <span class="trophy-value">5000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="currency-bar">
+                    <div class="currency-item"><img src="fire.png" alt="Стрик"><span>Стрик</span></div>
+                    <div class="currency-item"><img src="coin.png" alt="Монеты"><span>Монеты</span></div>
+                    <div class="currency-item"><img src="diamond.png" alt="Алмазы"><span>Алмазы</span></div>
+                </div>
+                <button class="settings-button"><img src="settings.png" alt="Настройки"></button>
+            </header>
+
+            <main class="content-area">
+                
+                <div class="leaderboard-container">
+                    
+                    <div class="leaderboard-tabs">
+                        <button class="tab-button active" data-tab="school">Школьная</button>
+                        <button class="tab-button" data-tab="regional">Региональная</button>
+                        <button class="tab-button" data-tab="international">Международная</button>
+                    </div>
+
+                    <div class="leaderboard-toggle">
+                        <button class="toggle-button active" data-type="trophies">🏆 Кубки</button>
+                        <button class="toggle-button" data-type="streak">🔥 Стрик</button>
+                    </div>
+
+                    <div class="leaderboard-list-header">
+                        <span>Место</span>
+                        <span>Игрок</span>
+                        <span>Результат</span>
+                    </div>
+                    <div class="leaderboard-list-body" id="leaderboard-list-container">
+                        </div>
+
+                    <div class="leaderboard-current-player" id="current-player-display">
+                        </div>
+
+                </div>
+
+            </main>
+            
+            <nav class="navigation-bar">
+                <div class="nav-background"></div>
+                <div class="buttons-container">
+                    
+                    <a href="dailyquestpage.html" class="nav-button">
+                        <img src="dailyquestbutton.png" alt="Quests">
+                        <span class="nav-button-text">DAILY QUESTS</span>
+                    </a>
+                    
+                    <a href="deckspage.html" class="nav-button">
+                        <img src="decksbutton.png" alt="Decks">
+                        <span class="nav-button-text">DECKS</span>
+                    </a>
+                    
+                    <a href="mainpage.html" class="nav-button home-button">
+                        <img src="homebutton.png" alt="Home">
+                        <span class="nav-button-text">HOME</span>
+                    </a>
+                    
+                    <a href="communitypage.html" class="nav-button">
+                        <img src="communitybutton.png" alt="Community">
+                        <span class="nav-button-text">COMMUNITY</span>
+                    </a>
+                    
+                    <a href="#" class="nav-button active">
+                        <img src="leaderboardbutton.png" alt="Leaderboard">
+                        <span class="nav-button-text">LEADERBOARD</span>
+                    </a>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+    
+    <script src="leaderboardpage.js"></script>
+</body>
+</html>

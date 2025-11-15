@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <link rel="stylesheet" href="communitypage.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <!-- PROFILE PANEL -->
+        <div class="profile-panel">
+            <div class="profile-info">
+                <div class="profile-avatar"></div> 
+                <div class="profile-details">
+                    <span class="nickname">Player Nickname</span>
+                    <div class="level-progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <span class="level-text">Next level</span>
+                </div>
+                <div class="trophies-display">
+                    <span class="trophy-value">5000</span>
+                </div>
+            </div>
+
+            <div class="currency-bar">
+                <div class="currency-item">
+                    <img src="fire.png" alt="Стрик">
+                    <span>17</span>
+                </div>
+                <div class="currency-item">
+                    <img src="coin.png" alt="Монеты">
+                    <span>1240</span>
+                </div>
+                <div class="currency-item">
+                    <img src="diamond.png" alt="Алмазы">
+                    <span>76</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <button class="settings-button"></button>
+
+        <!-- MAIN CONTENT -->
+        <main class="content-area">
+            
+            <div class="clan-display" id="open-clan-chat">
+                <img src="avatar.png" alt="Clan Avatar" class="clan-avatar">
+                <span class="clan-name">CLAN NAME</span>
+            </div>
+
+            <div class="friends-section">
+                <h2>Friends</h2>
+                <div class="friends-list" id="friend-list-container"></div>
+            </div>
+
+        </main>
+        
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav">
+            <div class="nav-background-bar"></div>
+            
+            <div class="nav-buttons-container">
+
+                <a href="dailyquestpage.html" class="nav-button">
+                    <div class="nav-icon-frame">
+                        <img src="dailyquestbutton.png" alt="Quests">
+                    </div>
+                </a>
+                
+                <a href="deckspage.html" class="nav-button">
+                    <div class="nav-icon-frame">
+                        <img src="decksbutton.png" alt="Decks">
+                    </div>
+                </a>
+
+                <a href="mainpage.html" class="nav-button home-active">
+                    <div class="nav-icon-frame">
+                        <img src="homebutton.png" alt="Home">
+                    </div>
+                </a>
+
+                <a href="#" class="nav-button active">
+                    <div class="nav-icon-frame">
+                        <img src="communitybutton.png" alt="Community">
+                    </div>
+                </a>
+
+                <a href="leaderboardpage.html" class="nav-button">
+                    <div class="nav-icon-frame">
+                        <img src="leaderboardbutton.png" alt="Leaderboard">
+                    </div>
+                </a>
+
+            </div>
+        </nav>
+        
+        <!-- MODAL CHAT WINDOW -->
+        <div id="chatModal" class="modal-overlay">
+            <div class="modal-content chat-box">
+                <header class="chat-header">
+                    <img src="" alt="Avatar" id="chat-avatar" class="chat-avatar-img">
+                    <h3 id="chat-title">Chat Title</h3>
+                    <button class="close-modal-btn" id="close-chat-modal">&times;</button>
+                </header>
+
+                <div class="chat-messages" id="chat-messages"></div>
+
+                <footer class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Написать сообщение...">
+                    <button id="send-chat-btn">▶</button>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="communitypage.js"></script>
+
+</body>
+</html>

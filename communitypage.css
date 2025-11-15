@@ -1,0 +1,364 @@
+/* ========= ГЛОБАЛЬНЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ ========= */
+
+:root {
+    --header-padding-v: 10px;
+    --header-padding-h: 15px;
+    --nav-height: 120px; /* Фиксированная высота для удобства */
+    
+    /* Цвета */
+    --color-background: #0d121c; /* Основной темный цвет для fallback */
+    --color-primary-blue: #0090c8;
+    --color-dark-blue: #004060;
+    --color-accent-gold: #ffd800;
+    --color-accent-neon: #00ccff;
+    --color-text: #fff;
+    --color-gray-dark: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* ИСПРАВЛЕНО: Фон теперь картинка с параметрами из других страниц */
+    background: var(--color-background) url('mainpagebackground.png') center center / cover no-repeat;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-text);
+}
+
+.main-container {
+    width: 100%;
+    height: 100vh;
+    padding-bottom: var(--nav-height); 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Убедимся, что фон main-container прозрачен, чтобы видеть фон body */
+    background-color: transparent; 
+}
+
+
+/* ========= ПРОФИЛЬ И ВАЛЮТА (HEADER) ========= */
+
+.profile-panel {
+    width: 100%;
+    padding: var(--header-padding-v) var(--header-padding-h);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative; 
+    z-index: 50;
+    /* Фон для панели профиля, чтобы она была читаемой на фоновой картинке */
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 55px;
+    height: 55px;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.nickname {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.level-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--color-dark-blue);
+    border-radius: 6px;
+    margin: 3px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-accent-gold);
+    border-radius: 6px;
+}
+
+.level-text {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.trophies-display {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.currency-bar {
+    display: flex;
+    gap: 18px;
+    margin-top: 12px;
+    padding-left: 5px;
+    flex-wrap: nowrap;
+}
+
+.currency-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.currency-item img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.settings-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 38px;
+    height: 38px;
+    background: url("settings.png") no-repeat center/contain;
+    border: none;
+    cursor: pointer;
+    z-index: 51;
+}
+
+
+/* ========= ОСНОВНАЯ ОБЛАСТЬ (КОНТЕНТ) ========= */
+
+.content-area {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow-y: auto; /* Позволяет прокручивать контент, если он не умещается */
+}
+
+/* --- Клан --- */
+
+.clan-display {
+    width: 100%;
+    max-width: 400px; 
+    background: rgba(0,0,0,0.4); /* Чуть темнее, чтобы выделялось на фоне */
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.clan-display:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.clan-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: var(--color-accent-neon);
+}
+
+.clan-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* --- Друзья --- */
+
+.friends-section {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.friends-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.friends-list {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(0,0,0,0.3); /* Фон для списка друзей */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.friend-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-gray-dark);
+    border: 2px solid var(--color-accent-gold);
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+.friend-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ========= ЧАТ МОДАЛ ========= */
+
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    backdrop-filter: blur(4px); background: rgba(0,0,0,0.4); justify-content: center; 
+    align-items: center; z-index: 3000;
+}
+
+.chat-box {
+    background: #004a70; width: 90%; max-width: 420px; height: 65%; border-radius: 16px; 
+    display: flex; flex-direction: column; padding: 12px;
+}
+/* ... (Остальные стили чата без изменений, если не указано иное) ... */
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px; /* Добавим отступ снизу */
+    border-bottom: 1px solid rgba(255,255,255,0.2); /* Разделитель */
+}
+
+.chat-avatar-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%; /* Круглый аватар */
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px; /* Отступ сверху */
+    border-top: 1px solid rgba(255,255,255,0.2); /* Разделитель */
+}
+
+#chat-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: #003a5e; /* Чуть темнее фон инпута */
+    color: var(--color-text);
+}
+
+#send-chat-btn {
+    background: var(--color-accent-gold);
+    border: none;
+    border-radius: 10px;
+    padding: 0 12px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333; /* Темный текст на золотой кнопке */
+    font-weight: bold;
+}
+
+
+/* ========= НИЖНЕЕ МЕНЮ (Унифицированный) ========= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--nav-height); 
+
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+    z-index: 2000;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); /* Добавлен более заметный эффект тени */
+}
+
+.nav-background-bar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #015b83, #018ac2);
+}
+
+.nav-buttons-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 18px;
+    align-items: center; 
+}
+
+.nav-button {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+
+    opacity: 0.6;
+    transition: 0.2s;
+    
+    transform: translateY(0px) !important; /* Убираем все старые сдвиги */
+    text-decoration: none; /* Убираем подчеркивание для ссылок */
+    color: var(--color-text);
+}
+
+.nav-button:hover {
+    transform: translateY(-6px);
+    opacity: 1;
+}
+
+.nav-button.active {
+    opacity: 1;
+    transform: translateY(-6px); /* Активная кнопка тоже поднимается */
+    color: var(--color-accent-gold); /* Активный цвет */
+}
+
+/* Если вам нужна особая анимация для 'home-active', оставьте, иначе удалите */
+.home-active {
+    transform: translateY(-12px); /* Home button поднята выше */
+    opacity: 1;
+    color: var(--color-accent-gold);
+}
+
+
+.nav-icon-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nav-button-text {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 3px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Тень для лучшей читаемости */
+}

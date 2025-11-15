@@ -1,0 +1,442 @@
+/* mainpage.css - ИСПРАВЛЕННАЯ ВЕРСЯ (BATTLE x2, ОПУЩЕН НИЖЕ) */
+
+/* ---------------------------------- */
+/* ОБЩИЕ СТИЛЫ СТРАНИЦЫ И КОНТЕЙНЕРОВ */
+/* ---------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    position: relative; 
+    background-color: #0d121c; 
+    color: #FFF; 
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative; 
+    background-color: transparent; 
+}
+
+/* ---------------------------------- */
+/* ФОН АРЕНЫ (Главная страница) */
+/* ---------------------------------- */
+.arena-background {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    background: url(mainpagebackground.png) center center / cover no-repeat; 
+    z-index: 1; 
+    opacity: 0.5; 
+    filter: brightness(0.8);
+}
+
+
+/* ---------------------------------- */
+/* ВЕРХНИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ПРОФИЛЬ И ВАЛЮТА) */
+/* ---------------------------------- */
+
+.profile-panel {
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    z-index: 50;  
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ffcc00; 
+    padding: 15px 20px; 
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 350px; 
+    box-sizing: border-box;
+    pointer-events: auto; 
+}
+
+.profile-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.profile-avatar {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #00ccff; 
+    background: url(avatar.png) center center / cover no-repeat; 
+    flex-shrink: 0; 
+}
+.profile-details { flex-grow: 1; margin-right: 10px;}
+.nickname { 
+    font-weight: bold; 
+    font-size: 1.2em; 
+    color: #fff;
+    white-space: nowrap; 
+}
+.level-text { font-size: 0.8em; color: #aaa; }
+.level-progress-bar { 
+    height: 8px; 
+    background-color: #555; 
+    border-radius: 4px; 
+    margin: 5px 0; 
+    overflow: hidden; 
+}
+.progress-fill { 
+    height: 100%; 
+    background-color: #00ccff; 
+}
+
+.trophies-display { 
+    display: flex; 
+    align-items: center; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    color: #ffcc00; 
+    margin-left: auto; 
+    background-color: #333; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap; 
+}
+.trophies-display img { 
+    width: 25px; 
+    height: 25px; 
+    margin-right: 5px; 
+    flex-shrink: 0;
+}
+
+.currency-bar { 
+    display: flex; 
+    gap: 15px;
+    padding-top: 10px; 
+    font-size: 0.9em; 
+    color: #eee; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: flex-start; 
+}
+.currency-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 3px;
+    white-space: nowrap;
+}
+.currency-item img { 
+    width: 25px; 
+    height: 25px; 
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.currency-item span { 
+    font-weight: bold; 
+    color: #fff; 
+}
+.currency-item:first-child span { color: #ff6600; }
+.currency-item:nth-child(2) span { color: #ffcc00; }
+.currency-item:nth-child(3) span { color: #00ccff; }
+
+
+/* ---------------------------------- */
+/* КНОПКИ (НАСТРОЙКИ, ЧАТ, BATTLE) */
+/* ---------------------------------- */
+
+.settings-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+    width: 80px; 
+    height: 80px; 
+    cursor: pointer;
+    background: url(settings.png) center center / contain no-repeat; 
+    border: none;
+    background-color: transparent;
+    pointer-events: auto;
+    transition: transform 0.2s;
+}
+.settings-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-button {
+    position: absolute;
+    top: 50%; 
+    left: 20px;
+    z-index: 50;
+    width: 120px; 
+    height: 120px; 
+    cursor: pointer;
+    background: url(chat.png) center center / contain no-repeat; 
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+.chat-button:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.battle-button-link {
+    position: absolute;
+    z-index: 50;
+    left: 50%;
+    /* ИЗМЕНЕНО: Опущено (18vh + 10vh = 28vh от низа) */
+    bottom: 10vh; 
+    transform: translateX(-50%);
+    /* ИЗМЕНЕНО: Увеличено (было 300x120) */
+    width: 600px; 
+    height: 240px; 
+    pointer-events: auto;
+}
+
+.battle-button {
+    width: 100%;
+    height: 70%;
+    background: url(battlebutton.png) center center / contain no-repeat; 
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.1s;
+}
+.battle-button:hover {
+    transform: scale(1.04);
+}
+
+
+/* ---------------------------------- */
+/* КОНТЕЙНЕР ДЛЯ АРЕН (РАКЕТА) */
+/* ---------------------------------- */
+.arena-elements {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    z-index: 10; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; 
+}
+
+/* ИЗМЕНЕНИЕ: ВНЕДРЕН ТВОЙ ИДЕАЛЬНЫЙ КОД */
+.arena-spot {
+    position: absolute; 
+    top: 43%; 
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    width: 500px; 
+    height: 500px;
+    cursor: pointer;
+    text-decoration: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+    pointer-events: auto; 
+    
+    /* Скрываем все арены по умолчанию, чтобы убрать "мелькание" */
+    display: none;
+}
+
+/* Показываем только ту арену, которую JS отметил как активную */
+.arena-spot.single-arena-active {
+    display: flex;
+}
+
+.arena-spot:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+}
+
+.arena-spot img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.hidden-arena {
+    display: none !important; 
+}
+
+
+/* ---------------------------------- */
+/* НИЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ (КАК В QUESTPAGE) */
+/* ---------------------------------- */
+
+.navigation-bar { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 15.7vh; 
+    min-height: 90px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    z-index: 1000; 
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); 
+    pointer-events: auto;
+}
+
+.nav-background { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    bottom: 0; 
+    background: linear-gradient(to top, #01587F 75%, #017FB7 100%);
+}
+
+.buttons-container { 
+    position: absolute; 
+    bottom: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start; 
+    padding-top: 1vh; 
+}
+
+.nav-button { 
+    width: 14vw; 
+    max-width: 120px;
+    height: 10vh; 
+    max-height: 100px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    text-decoration: none; 
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: 600;
+    z-index: 2; 
+    opacity: 0.6; 
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap; 
+}
+
+.nav-button:hover {
+    opacity: 1;
+    transform: translateY(-5px); 
+}
+
+.nav-button img { 
+    /* ИЗМЕНЕНО: Увеличение иконки в 2 раза */
+    width: 160%; 
+    height: 160%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+.nav-button-text {
+    margin-top: 5px; 
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+
+.home-button { 
+    width: 16vw; 
+    max-width: 140px;
+    height: 12vh;
+    max-height: 120px;
+    transform: translateY(-1.5vh); 
+    opacity: 1; 
+}
+.home-button:hover {
+    opacity: 1;
+    transform: translateY(-2vh); 
+}
+/* ИЗМЕНЕНО: Увеличение иконки HOME */
+.home-button img {
+    width: 180%;
+    height: 180%;
+}
+
+.active-home-button {
+    opacity: 1; 
+    transform: translateY(-1.5vh); 
+    transition: none; 
+    color: #ffcc00; 
+}
+.active-home-button:hover {
+    opacity: 1; 
+    transform: translateY(-2vh); 
+}
+
+
+/* ---------------------------------- */
+/* МОДАЛЬНЫЕ ОКНА (ДЛЯ НАСТРОЕК) */
+/* ---------------------------------- */
+
+.modal-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.85);
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2000; 
+    pointer-events: auto;
+}
+
+.modal-content { 
+    background-color: #222; 
+    border: 3px solid #00ccff; 
+    border-radius: 15px; 
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5); 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+    width: 500px; 
+    height: 400px; 
+    box-sizing: border-box;
+}
+
+.close-modal-btn { 
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    font-size: 35px;
+    color: #fff; 
+    cursor: pointer; 
+    background: none; 
+    border: none; 
+    line-height: 1;
+}
+
+.settings-content h2 {
+    text-align: center;
+    color: #00ccff;
+    margin-top: 0;
+}
+
+.setting-option { 
+    padding: 15px; 
+    border-bottom: 1px solid #444; 
+    cursor: pointer; 
+    font-size: 1.2em;
+    transition: background-color 0.2s;
+}
+.setting-option:hover {
+    background-color: #333;
+}

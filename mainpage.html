@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page - Моя Игра</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="arena-background"></div>
+        
+        <div class="profile-panel">
+            <div class="profile-info">
+                <img src="avatar.png" alt="Аватар игрока" class="profile-avatar">
+                <div class="profile-details">
+                    <span class="nickname">Player Nickname</span>
+                    <div class="level-progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <span class="level-text">Next level</span>
+                </div>
+                <div class="trophies-display">
+                    <img src="trophy.png" alt="Кубки">
+                    <span>5000</span>
+                </div>
+            </div>
+            <div class="currency-bar">
+                <div class="currency-item">
+                    <img src="fire.png" alt="Стрик">
+                    <span>17</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="coin.png" alt="Монеты">
+                    <span class="currency-value">1240</span> 
+                </div>
+                <div class="currency-item">
+                    <img src="diamond.png" alt="Алмазы">
+                    <span class="currency-value">75</span> 
+                </div>
+            </div>
+        </div>
+
+        <button class="settings-button open-settings-modal">
+            </button>
+        
+        <a href="communitypage.html" class="chat-button">
+            </a>
+        
+        <a href="#" class="battle-button-link">
+            <button class="battle-button">
+                </button>
+        </a>
+
+        <div class="arena-elements">
+            <a href="#" class="arena-spot arena-spot-6" data-arena-id="6">
+                <img src="Arena6.png" alt="Арена 6">
+            </a>
+            
+            <a href="#" class="arena-spot arena-spot-1" data-arena-id="1">
+                <img src="Arena1.png" alt="Арена 1">
+            </a>
+            <a href="#" class="arena-spot arena-spot-2" data-arena-id="2">
+                <img src="Arena2.png" alt="Арена 2">
+            </a>
+            <a href="#" class="arena-spot arena-spot-3" data-arena-id="3">
+                <img src="Arena3.png" alt="Арена 3">
+            </a>
+            <a href="#" class="arena-spot arena-spot-4" data-arena-id="4">
+                <img src="Arena4.png" alt="Арена 4">
+            </a>
+            <a href="#" class="arena-spot arena-spot-5" data-arena-id="5">
+                <img src="Arena5.png" alt="Арена 5">
+            </a>
+        </div>
+        
+    </div>
+
+    <footer class="navigation-bar">
+        
+        <div class="nav-background"></div>
+        
+        <div class="buttons-container">
+            <a href="dailyquestpage.html" class="nav-button">
+                <img src="dailyquestbutton.png" alt="Ежедневные задания">
+                <span class="nav-button-text">DAILY QUESTS</span>
+            </a>
+            <a href="battle.html" class="battle-button-link">
+            <button class="battle-button">
+                </button>
+        </a>
+            <a href="deckspage.html" class="nav-button">
+                <img src="decksbutton.png" alt="Колоды">
+                <span class="nav-button-text">DECKS</span>
+            </a>
+            <div class="nav-button home-button active-home-button">
+                <img src="homebutton.png" alt="Главная">
+                <span class="nav-button-text">HOME</span>
+            </div>
+            <a href="communitypage.html" class="nav-button">
+                <img src="communitybutton.png" alt="Сообщество">
+                <span class="nav-button-text">COMMUNITY</span>
+            </a>
+            <a href="leaderboardpage.html" class="nav-button">
+                <img src="leaderboardbutton.png" alt="Таблица лидеров">
+                <span class="nav-button-text">LEADERBOARD</span>
+            </a>
+        </div>
+    </footer>
+
+    <div id="arenaModal" class="modal-overlay">
+        </div>
+    
+    <div id="settingsModal" class="modal-overlay">
+         <div class="modal-content settings-content">
+            <button class="close-modal-btn">&times;</button>
+            <h2>Настройки Игры</h2>
+            <div class="setting-option">Звук: Вкл/Выкл</div>
+            <div class="setting-option">Язык: Русский</div>
+            <div class="setting-option">Выход из аккаунта</div>
+        </div>
+    </div>
+
+    <script src="mainpage.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+/* deckspage.css */
+
+/* ---------------------------------- */
+/* ОБЩИЕ СТИЛЫ СТРАНИЦЫ И КОНТЕЙНЕРОВ */
+/* ---------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    position: relative; 
+    background-color: #0d121c; 
+    color: #FFF; 
+    font-family: sans-serif;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative; 
+    background-color: transparent; 
+}
+
+/* ---------------------------------- */
+/* ФОН СТРАНИЦЫ */
+/* ---------------------------------- */
+.deck-background {
+    position: absolute; 
+    width: 100vw; 
+    height: 100vh; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 4.88vh)); 
+    background: url(mainpagebackground.png); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+    opacity: 0.7;
+    filter: brightness(0.8);
+}
+
+/* ---------------------------------- */
+/* ВЕРХНИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ПРОФИЛЬ И ВАЛЮТА) */
+/* ---------------------------------- */
+/* (Блок стилей профиля и валюты, без изменений) */
+.profile-panel {
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    z-index: 50;  
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ffcc00; 
+    padding: 15px 20px; 
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 350px; 
+    box-sizing: border-box;
+    pointer-events: auto; 
+}
+.profile-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.profile-avatar {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #00ccff; 
+    background: url(avatar.png) center center / cover no-repeat; 
+    flex-shrink: 0; 
+}
+.profile-details { flex-grow: 1; margin-right: 10px;}
+.nickname { 
+    font-weight: bold; 
+    font-size: 1.2em; 
+    color: #fff;
+    white-space: nowrap; 
+}
+.level-text { font-size: 0.8em; color: #aaa; }
+.level-progress-bar { 
+    height: 8px; 
+    background-color: #555; 
+    border-radius: 4px; 
+    margin: 5px 0; 
+    overflow: hidden; 
+}
+.progress-fill { 
+    height: 100%; 
+    background-color: #00ccff; 
+}
+.trophies-display { 
+    display: flex; 
+    align-items: center; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    color: #ffcc00; 
+    margin-left: auto; 
+    background-color: #333; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap; 
+}
+.trophies-display img { 
+    width: 25px; 
+    height: 25px; 
+    margin-right: 5px; 
+    flex-shrink: 0;
+}
+.currency-bar { 
+    display: flex; 
+    gap: 15px;
+    padding-top: 10px; 
+    font-size: 0.9em; 
+    color: #eee; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: flex-start; 
+}
+.currency-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 3px;
+    white-space: nowrap;
+}
+.currency-item img { 
+    width: 25px; 
+    height: 25px; 
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.currency-item span { 
+    font-weight: bold; 
+    color: #fff; 
+}
+.currency-item:first-child span { color: #ff6600; }
+.currency-item:nth-child(2) span { color: #ffcc00; }
+.currency-item:nth-child(3) span { color: #00ccff; }
+
+
+/* ---------------------------------- */
+/* ЦЕНТРАЛЬНЫЙ КОНТЕНТ (ПОСТРОИТЕЛЬ КОЛОДЫ) */
+/* ---------------------------------- */
+
+.deck-builder-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 80vw;
+    height: 70vh;
+    background-color: rgba(13, 18, 28, 0.85); 
+    border: 3px solid #ffcc00;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+    display: flex;
+    flex-direction: column; 
+    overflow: hidden; /* Обрезаем все, что выходит за рамки */
+}
+
+.area-title {
+    font-size: 2.5vh;
+    color: #ffcc00;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* АКТИВНАЯ КОЛОДА (СВЕРХУ - 4 слота) */
+.deck-area {
+    width: 100%;
+    height: 40%;
+    border-bottom: 3px solid #ffcc00; 
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.deck-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 70%; 
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.deck-slot {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #555;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, border-color 0.2s;
+    /* ИЗМЕНЕНО: Добавляем .card-container внутрь слота */
+    padding: 5px; 
+}
+.deck-slot .card-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.deck-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: grab;
+    opacity: 1;
+}
+.deck-slot img[src="placeholder.png"] {
+    opacity: 0.1;
+    cursor: default;
+    background-color: rgba(0, 204, 255, 0.1);
+    border: 2px dashed #00ccff;
+    box-shadow: inset 0 0 10px rgba(0, 204, 255, 0.2);
+}
+
+
+/* КОЛЛЕКЦИЯ (СНИЗУ - Скролл) */
+.collection-area {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* ИЗМЕНЕНО: Скрываем overflow-y */
+    z-index: 20;
+}
+
+.card-scroller {
+    flex-grow: 1;
+    overflow-x: auto; 
+    overflow-y: hidden; /* ИЗМЕНЕНО: Скрываем overflow-y */
+    white-space: nowrap; 
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.card-container {
+    position: relative; 
+    display: inline-block; 
+    margin-right: 20px;
+    outline: none; 
+}
+
+/* CSS-класс для скрытия карты в коллекции (когда она в колоде) */
+.card-container.in-deck {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin-right: 0;
+    transition: all 0.3s;
+}
+
+
+.card {
+    width: 150px; 
+    height: 200px; 
+    object-fit: contain;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 10px;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ccff;
+}
+
+
+/* ---------------------------------- */
+/* СТИЛИ ДЛЯ DRAG-AND-DROP */
+/* ---------------------------------- */
+.dragging {
+    opacity: 0.8 !important;
+    transform: scale(1.1) rotate(3deg) !important;
+    box-shadow: 0 10px 20px rgba(0, 204, 255, 0.5) !important;
+    cursor: grabbing !important;
+}
+
+.deck-slot.drag-over {
+    background-color: #00ccff;
+    border-color: #fff;
+}
+.collection-area.drag-over {
+    background-color: rgba(70, 70, 70, 0.5);
+}
+
+/* ---------------------------------- */
+/* ВСПЛЫВАЮЩАЯ ПОДСКАЗКА (TOOLTIP) */
+/* ---------------------------------- */
+
+.card-tooltip {
+    position: absolute;
+    /* ИСПРАВЛЕНИЕ: Показываем СНИЗУ, чтобы не обрезалось */
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); 
+    
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00ccff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px; 
+    text-align: left;
+    font-size: 0.9em;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 101; 
+    
+    white-space: normal; 
+}
+.card-tooltip p {
+    margin: 5px 0 0 0;
+}
+
+/* Показываем подсказку и для карт в коллекции, и для карт в слоте */
+.card-container:hover .card-tooltip,
+.deck-slot .card-container:hover .card-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Скрываем подсказку для пустых слотов */
+img[src="placeholder.png"] ~ .card-tooltip {
+    display: none !important;
+}
+
+
+.tooltip-mana {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+
+/* ---------------------------------- */
+/* НИЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ (МАЛЕНЬКАЯ, 2x ИКОНКИ) */
+/* ---------------------------------- */
+
+.navigation-bar { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 15.7vh; /* Стандартная высота */
+    min-height: 90px;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    z-index: 1000; 
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); 
+}
+
+.nav-background { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    bottom: 0; 
+    background: linear-gradient(to top, #01587F 75%, #017FB7 100%);
+}
+
+.buttons-container { 
+    position: absolute; 
+    bottom: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start; 
+    padding-top: 1vh;
+}
+
+.nav-button { 
+    width: 14vw; 
+    max-width: 120px;
+    height: 10vh; 
+    max-height: 100px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    text-decoration: none; 
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: 600;
+    z-index: 2; 
+    opacity: 0.6; 
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap; 
+}
+
+.nav-button:hover {
+    opacity: 1;
+    transform: translateY(-5px); 
+}
+
+.nav-button img { 
+    width: 160%; 
+    height: 160%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+.nav-button-text {
+    margin-top: 5px; 
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+
+.home-button { 
+    width: 16vw; 
+    max-width: 140px;
+    height: 12vh;
+    max-height: 120px;
+    transform: translateY(-1.5vh); 
+    opacity: 0.6; /* Неактивна */
+}
+.home-button:hover {
+    opacity: 1;
+    transform: translateY(-2vh); 
+}
+.home-button img {
+    width: 180%;
+    height: 180%;
+}
+
+/* Кнопка DECKS - Активная */
+.active-deck-button {
+    width: 16vw; 
+    max-width: 140px;
+    height: 12vh;
+    max-height: 120px;
+    opacity: 1; 
+    transform: translateY(-1.5vh); 
+    transition: none; 
+    color: #ffcc00; 
+}
+.active-deck-button:hover {
+    opacity: 1; 
+    transform: translateY(-2vh); 
+}
+.active-deck-button img {
+    width: 180%;
+    height: 180%;
+}
